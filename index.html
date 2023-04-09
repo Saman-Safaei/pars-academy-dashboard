@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pars Academy Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+    <script defer src="dashboard.js"></script>
+    <script defer src="dashboard-live-timer.js"></script>
+    <script defer src="dashboard-navigation.js"></script>
+    <script defer src="dashboard-modal.js"></script>
+  </head>
+  <body>
+    <div id="modal" style="display: none">
+      <div class="backdrop"></div>
+      <form class="modal-form" action="#" enctype="multipart/form-data">
+        <label class="modal__file-input">
+          <input type="file" name="uploaded" />
+          <span class="modal__file-name">برای انتخاب فایل کلیک کنید</span>
+        </label>
+        <div class="modal__button-group">
+          <button class="modal__submit-btn" type="button">بستن</button>
+          <button class="modal__submit-btn modal__submit-btn--primary" type="submit">ارسال تمرین</button>
+        </div>
+      </form>
+    </div>
+    <div class="navbar">
+      <div class="navbar__right-items">
+        <button class="navbar__toggle-sidebar-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="navbar__toggle-sidebar-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
+          </svg>
+        </button>
+      </div>
+      <div class="navbar__left-items">
+        <div class="navbar__user-info">
+          <img class="navbar__user-img" src="images/profile-image.jpg" alt="profile-picture" />
+          <div>
+            <h3>09196043787</h3>
+            <p class="navbar__user-type">نوع حساب: دانشجو</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <aside class="sidebar">
+      <div class="sidebar__content">
+        <div class="sidebar__header">
+          <button class="sidebar__collapse-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="sidebar__collapse-icon">
+              <path
+                fill-rule="evenodd"
+                d="M3 6a3 3 0 013-3h2.25a3 3 0 013 3v2.25a3 3 0 01-3 3H6a3 3 0 01-3-3V6zm9.75 0a3 3 0 013-3H18a3 3 0 013 3v2.25a3 3 0 01-3 3h-2.25a3 3 0 01-3-3V6zM3 15.75a3 3 0 013-3h2.25a3 3 0 013 3V18a3 3 0 01-3 3H6a3 3 0 01-3-3v-2.25zm9.75 0a3 3 0 013-3H18a3 3 0 013 3V18a3 3 0 01-3 3h-2.25a3 3 0 01-3-3v-2.25z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+          <h1 class="sidebar__header-title truncate">پارس آکادمی</h1>
+        </div>
+        <nav class="sidebar__links-container">
+          <ul class="sidebar__links">
+            <li>
+              <a href="#pageDashboard" class="sidebar__link">
+                <span class="sidebar__icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="sidebar__icon">
+                    <path
+                      fill-rule="evenodd"
+                      d="M3 6a3 3 0 013-3h12a3 3 0 013 3v12a3 3 0 01-3 3H6a3 3 0 01-3-3V6zm14.25 6a.75.75 0 01-.22.53l-2.25 2.25a.75.75 0 11-1.06-1.06L15.44 12l-1.72-1.72a.75.75 0 111.06-1.06l2.25 2.25c.141.14.22.331.22.53zm-10.28-.53a.75.75 0 000 1.06l2.25 2.25a.75.75 0 101.06-1.06L8.56 12l1.72-1.72a.75.75 0 10-1.06-1.06l-2.25 2.25z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <span class="truncate">داشبورد</span>
+              </a>
+            </li>
+            <li>
+              <a href="#pageCourses" class="sidebar__link">
+                <span class="sidebar__icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="sidebar__icon">
+                    <path
+                      d="M11.7 2.805a.75.75 0 01.6 0A60.65 60.65 0 0122.83 8.72a.75.75 0 01-.231 1.337 49.949 49.949 0 00-9.902 3.912l-.003.002-.34.18a.75.75 0 01-.707 0A50.009 50.009 0 007.5 12.174v-.224c0-.131.067-.248.172-.311a54.614 54.614 0 014.653-2.52.75.75 0 00-.65-1.352 56.129 56.129 0 00-4.78 2.589 1.858 1.858 0 00-.859 1.228 49.803 49.803 0 00-4.634-1.527.75.75 0 01-.231-1.337A60.653 60.653 0 0111.7 2.805z" />
+                    <path
+                      d="M13.06 15.473a48.45 48.45 0 017.666-3.282c.134 1.414.22 2.843.255 4.285a.75.75 0 01-.46.71 47.878 47.878 0 00-8.105 4.342.75.75 0 01-.832 0 47.877 47.877 0 00-8.104-4.342.75.75 0 01-.461-.71c.035-1.442.121-2.87.255-4.286A48.4 48.4 0 016 13.18v1.27a1.5 1.5 0 00-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.661a6.729 6.729 0 00.551-1.608 1.5 1.5 0 00.14-2.67v-.645a48.549 48.549 0 013.44 1.668 2.25 2.25 0 002.12 0z" />
+                    <path
+                      d="M4.462 19.462c.42-.419.753-.89 1-1.394.453.213.902.434 1.347.661a6.743 6.743 0 01-1.286 1.794.75.75 0 11-1.06-1.06z" />
+                  </svg>
+                </span>
+                <span class="truncate">دوره ها</span>
+              </a>
+            </li>
+            <li>
+              <a class="sidebar__link" href="#pageExercises">
+                <span class="sidebar__icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="sidebar__icon">
+                    <path
+                      d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.47a.75.75 0 001-.708V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
+                  </svg>
+                </span>
+                <span class="truncate">تمرین ها</span>
+              </a>
+            </li>
+            <li>
+              <a class="sidebar__link" href="#pageLives">
+                <span class="sidebar__icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="sidebar__icon">
+                    <path
+                      d="M4.5 4.5a3 3 0 00-3 3v9a3 3 0 003 3h8.25a3 3 0 003-3v-9a3 3 0 00-3-3H4.5zM19.94 18.75l-2.69-2.69V7.94l2.69-2.69c.944-.945 2.56-.276 2.56 1.06v11.38c0 1.336-1.616 2.005-2.56 1.06z" />
+                  </svg>
+                </span>
+                <span class="truncate">لایو ها</span>
+              </a>
+            </li>
+            <li>
+              <a href="#pageNotifications" class="sidebar__link">
+                <span class="sidebar__icon-container sidebar__icon-notification">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="sidebar__icon sidebar__notification-animation">
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z"
+                      clip-rule="evenodd" />
+                  </svg>
+                  <span class="sidebar__notification-badge"></span>
+                </span>
+                <span class="truncate">اعلان ها</span>
+              </a>
+            </li>
+            <li>
+              <a href="#pageSettings" class="sidebar__link">
+                <span class="sidebar__icon-container">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="sidebar__icon">
+                    <path
+                      fill-rule="evenodd"
+                      d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 00-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 00-2.282.819l-.922 1.597a1.875 1.875 0 00.432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 000 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 00-.432 2.385l.922 1.597a1.875 1.875 0 002.282.818l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 002.28-.819l.923-1.597a1.875 1.875 0 00-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 000-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 00-2.282-.818l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 00-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 00-1.85-1.567h-1.843zM12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <span class="sidebar__page-name truncate">تنظیمات</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="sidebar__footer">
+          <div class="sidebar__footer-row">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="sidebar__footer-icon mb-2">
+              <path
+                fill-rule="evenodd"
+                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                clip-rule="evenodd" />
+            </svg>
+            <span class="truncate">42 امتیاز</span>
+          </div>
+          <div class="sidebar__footer-row">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="sidebar__footer-icon">
+              <path
+                d="M10.464 8.746c.227-.18.497-.311.786-.394v2.795a2.252 2.252 0 01-.786-.393c-.394-.313-.546-.681-.546-1.004 0-.323.152-.691.546-1.004zM12.75 15.662v-2.824c.347.085.664.228.921.421.427.32.579.686.579.991 0 .305-.152.671-.579.991a2.534 2.534 0 01-.921.42z" />
+              <path
+                fill-rule="evenodd"
+                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v.816a3.836 3.836 0 00-1.72.756c-.712.566-1.112 1.35-1.112 2.178 0 .829.4 1.612 1.113 2.178.502.4 1.102.647 1.719.756v2.978a2.536 2.536 0 01-.921-.421l-.879-.66a.75.75 0 00-.9 1.2l.879.66c.533.4 1.169.645 1.821.75V18a.75.75 0 001.5 0v-.81a4.124 4.124 0 001.821-.749c.745-.559 1.179-1.344 1.179-2.191 0-.847-.434-1.632-1.179-2.191a4.122 4.122 0 00-1.821-.75V8.354c.29.082.559.213.786.393l.415.33a.75.75 0 00.933-1.175l-.415-.33a3.836 3.836 0 00-1.719-.755V6z"
+                clip-rule="evenodd" />
+            </svg>
+            <span class="truncate">20,000 تومان</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <main class="content">
+      <!--  ------------------ داشبورد اصلی -------------------   -->
+      <div id="pageDashboard">
+        <div class="page-container">
+          <div class="double-box">
+            <div class="double-box__user-info">
+              <div class="user-info__item">
+                <h4>نام</h4>
+                <span class="truncate">سامان</span>
+              </div>
+              <div class="user-info__item">
+                <h4>نام خانوادگی</h4>
+                <span class="truncate">صفائی</span>
+              </div>
+              <div class="user-info__item">
+                <h4>شماره تماس</h4>
+                <span class="truncate">09196043787</span>
+              </div>
+              <div class="user-info__item">
+                <h4>ایمیل</h4>
+                <span class="truncate">xsamansafaeix@gmail.com</span>
+              </div>
+              <div class="user-info__item">
+                <h4>تاریخ عضویت</h4>
+                <span class="truncate">1401/08/01</span>
+              </div>
+            </div>
+            <div class="double-box__last-notifications">
+              <ul class="double-box__n-list">
+                <li>
+                  <div class="notification">
+                    <div class="notification__icon-container notification--ok">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="notification__icon">
+                        <path
+                          fill-rule="evenodd"
+                          d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <div class="notification__info-container">
+                      <h4>اعلان عملیات موفقیت آمیز.</h4>
+                      <p>برای دیدن جزئیات اعلان به صفحه اعلان ها مراجعه کنید.</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="notification">
+                    <div class="notification__icon-container notification--info">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="notification__icon">
+                        <path
+                          fill-rule="evenodd"
+                          d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <div class="notification__info-container">
+                      <h4>اعلان خبری.</h4>
+                      <p>برای دیدن جزئیات اعلان به صفحه اعلان ها مراجعه کنید.</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="notification">
+                    <div class="notification__icon-container notification--warning">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="notification__icon">
+                        <path
+                          fill-rule="evenodd"
+                          d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <div class="notification__info-container">
+                      <h4>یک اعلان هشداری !</h4>
+                      <p>برای دیدن جزئیات اعلان به صفحه اعلان ها مراجعه کنید.</p>
+                    </div>
+                  </div>
+                </li>
+                <!--  This is a static element -->
+                <li class="mt-auto">
+                  <button class="see-all-notification-btn">دیدن همه اعلان ها</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="info-box">
+            <div class="info-box__item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="info-box__icon">
+                <path
+                  d="M5.85 3.5a.75.75 0 00-1.117-1 9.719 9.719 0 00-2.348 4.876.75.75 0 001.479.248A8.219 8.219 0 015.85 3.5zM19.267 2.5a.75.75 0 10-1.118 1 8.22 8.22 0 011.987 4.124.75.75 0 001.48-.248A9.72 9.72 0 0019.266 2.5z" />
+                <path
+                  fill-rule="evenodd"
+                  d="M12 2.25A6.75 6.75 0 005.25 9v.75a8.217 8.217 0 01-2.119 5.52.75.75 0 00.298 1.206c1.544.57 3.16.99 4.831 1.243a3.75 3.75 0 107.48 0 24.583 24.583 0 004.83-1.244.75.75 0 00.298-1.205 8.217 8.217 0 01-2.118-5.52V9A6.75 6.75 0 0012 2.25zM9.75 18c0-.034 0-.067.002-.1a25.05 25.05 0 004.496 0l.002.1a2.25 2.25 0 11-4.5 0z"
+                  clip-rule="evenodd" />
+              </svg>
+              <span class="info-box__value">0</span>
+              <span class="info-box__key">اعلان های جدید</span>
+            </div>
+            <div class="info-box__item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="info-box__icon">
+                <path
+                  d="M11.25 4.533A9.707 9.707 0 006 3a9.735 9.735 0 00-3.25.555.75.75 0 00-.5.707v14.25a.75.75 0 001 .707A8.237 8.237 0 016 18.75c1.995 0 3.823.707 5.25 1.886V4.533zM12.75 20.636A8.214 8.214 0 0118 18.75c.966 0 1.89.166 2.75.47a.75.75 0 001-.708V4.262a.75.75 0 00-.5-.707A9.735 9.735 0 0018 3a9.707 9.707 0 00-5.25 1.533v16.103z" />
+              </svg>
+              <span class="info-box__value">5</span>
+              <span class="info-box__key">تعداد تمرین های شما</span>
+            </div>
+            <div class="info-box__item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="info-box__icon">
+                <path
+                  d="M11.7 2.805a.75.75 0 01.6 0A60.65 60.65 0 0122.83 8.72a.75.75 0 01-.231 1.337 49.949 49.949 0 00-9.902 3.912l-.003.002-.34.18a.75.75 0 01-.707 0A50.009 50.009 0 007.5 12.174v-.224c0-.131.067-.248.172-.311a54.614 54.614 0 014.653-2.52.75.75 0 00-.65-1.352 56.129 56.129 0 00-4.78 2.589 1.858 1.858 0 00-.859 1.228 49.803 49.803 0 00-4.634-1.527.75.75 0 01-.231-1.337A60.653 60.653 0 0111.7 2.805z" />
+                <path
+                  d="M13.06 15.473a48.45 48.45 0 017.666-3.282c.134 1.414.22 2.843.255 4.285a.75.75 0 01-.46.71 47.878 47.878 0 00-8.105 4.342.75.75 0 01-.832 0 47.877 47.877 0 00-8.104-4.342.75.75 0 01-.461-.71c.035-1.442.121-2.87.255-4.286A48.4 48.4 0 016 13.18v1.27a1.5 1.5 0 00-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.661a6.729 6.729 0 00.551-1.608 1.5 1.5 0 00.14-2.67v-.645a48.549 48.549 0 013.44 1.668 2.25 2.25 0 002.12 0z" />
+                <path
+                  d="M4.462 19.462c.42-.419.753-.89 1-1.394.453.213.902.434 1.347.661a6.743 6.743 0 01-1.286 1.794.75.75 0 11-1.06-1.06z" />
+              </svg>
+              <span class="info-box__value">1</span>
+              <span class="info-box__key">تعداد دوره های شما</span>
+            </div>
+            <div class="info-box__item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="info-box__icon">
+                <path d="M4.5 3.75a3 3 0 00-3 3v.75h21v-.75a3 3 0 00-3-3h-15z" />
+                <path
+                  fill-rule="evenodd"
+                  d="M22.5 9.75h-21v7.5a3 3 0 003 3h15a3 3 0 003-3v-7.5zm-18 3.75a.75.75 0 01.75-.75h6a.75.75 0 010 1.5h-6a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3z"
+                  clip-rule="evenodd" />
+              </svg>
+              <span class="info-box__value">20,000 تومان</span>
+              <span class="info-box__key">درآمد ماه گذشته</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  ------------------ صفحه دوره ها -------------------   -->
+      <div id="pageCourses">
+        <div class="page-container">
+          <section>
+            <h3 class="page-mini-title">دوره های شما</h3>
+            <p class="page-mini-subtitle">برای دیدن محتوای دوره و دسترسی به ویدیو های آموزشی وارد صفحه دوره شوید.</p>
+            <ul class="course-page-container">
+              <li>
+                <div class="page-course__course">
+                  <img
+                    class="page-course__course-img"
+                    src="images/front-end.jpg"
+                    alt="front-end-development" />
+                  <div class="page-course__course-info">
+                    <h4 class="page-course__course-title">دوره غول فرانت اند</h4>
+                    <p class="page-course__course-detail">
+                      <span>وضعیت دوره:</span>
+                      <span>درحال ضبط</span>
+                    </p>
+                    <p class="page-course__course-detail">
+                      <span>قسمت های آپلود شده:</span>
+                      <span>5</span>
+                    </p>
+                    <a class="page-course__enter-course-btn" href="#">ورود به صفحه دوره</a>
+                    <a class="page-course__send-exercise" href="#">ارسال تمرین</a>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="page-course__course">
+                  <img
+                    class="page-course__course-img"
+                    src="images/backend-course-min.jpg"
+                    alt="front-end-development" />
+                  <div class="page-course__course-info">
+                    <h4 class="page-course__course-title">دوره غول بک اند</h4>
+                    <p class="page-course__course-detail">
+                      <span>وضعیت دوره:</span>
+                      <span>درحال ضبط</span>
+                    </p>
+                    <p class="page-course__course-detail">
+                      <span>قسمت های آپلود شده:</span>
+                      <span>21</span>
+                    </p>
+                    <a class="page-course__enter-course-btn" href="#">ورود به صفحه دوره</a>
+                    <a class="page-course__send-exercise" href="#">ارسال تمرین</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3 class="page-mini-title">دوره های پیشنهادی</h3>
+            <p class="page-mini-subtitle">دوره های پیشنهادی سایت پارس آکادمی برای شما.</p>
+            <ul class="course-page-container">
+              <li>
+                <div class="page-course__course">
+                  <img
+                    class="page-course__course-img"
+                    src="images/backend-course-min.jpg"
+                    alt="front-end-development" />
+                  <div class="page-course__course-info">
+                    <h4 class="page-course__course-title">دوره غول بک اند</h4>
+                    <p class="page-course__course-detail">
+                      <span>وضعیت دوره:</span>
+                      <span>درحال ضبط</span>
+                    </p>
+                    <p class="page-course__course-detail">
+                      <span>قسمت های آپلود شده:</span>
+                      <span>21</span>
+                    </p>
+                    <p class="page-course__course-detail">
+                      <span>تعداد دانشجو:</span>
+                      <span>234</span>
+                    </p>
+                    <a class="page-course__enter-course-btn" href="#">ثبت نام در دوره</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <!--  ---------------- صفحه تمرین ها ---------------------   -->
+      <div id="pageExercises">
+        <div class="page-container">
+          <h3 class="page-mini-title">تمرین ها</h3>
+          <p class="page-mini-subtitle mb-8">
+            برای دیدن تمرین هر بخش رو تمرین مورد نظر کلیک کنید و تمرین انجام شده را آپلود کنید.
+          </p>
+
+          <div class="exercise__dropdown">
+            <div class="exercise__dropdown-header">
+              <span class="exercise__title truncate">1 - ساختن یک scrollbar ساده از ابتدا با css</span>
+              <div class="exercise__actions">
+                <span class="exercise__is-done">انجام نشده</span>
+                <button class="exercise__arrow">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="exercise__content">
+              <p>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
+                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
+                شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
+                الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و
+                دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای
+                اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+              </p>
+              <video class="media" controls>
+                <source src="../assets/sample.mp4" />
+              </video>
+              <img class="media" src="images/front-end.jpg" alt="sample" />
+              <p>
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
+                متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده
+                شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
+                الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و
+                دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای
+                اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+              </p>
+              <button onclick="openModalHandler('https://google.com/')" class="exercise__send-btn">ارسال تمرین</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  ----------------- صفحه لایو ها --------------------   -->
+      <div id="pageLives">
+        <div class="page-container">
+          <div class="timer-slice">
+            <div class="mb-8">
+              <h3 class="page-mini-title">تا لایو بعدی</h3>
+              <p class="page-mini-subtitle">
+                برای آمادگی بهتر در دوره و موفقیت بیشتر بهتر است در لایو های هفتگی شرکت کنید.
+              </p>
+            </div>
+            <div dir="ltr" class="live-timer"></div>
+          </div>
+          <div class="redirect-slice">
+            <h3 class="page-mini-title">ورود به صفحه لایو</h3>
+            <p class="page-mini-subtitle mb-8">
+              برای آمادگی بهتر در دوره و موفقیت بیشتر بهتر است در لایو های هفتگی شرکت کنید.
+            </p>
+            <a href="#" class="enter-live-btn">ورود به صفحه لایو</a>
+          </div>
+        </div>
+      </div>
+      <!--  --------------- صفحه اعلان ها ----------------------   -->
+      <div id="pageNotifications">
+        <div class="page-container">
+          <ul class="notification-page-list">
+            <li>
+              <div class="notification">
+                <div class="notification__icon-container notification--ok">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="notification__icon">
+                    <path
+                      fill-rule="evenodd"
+                      d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="notification__info-container">
+                  <h4>اعلان عملیات موفقیت آمیز برای کاربران</h4>
+                  <p>
+                    برای دیدن قسمت های دوره باید به صفحه مربوط به دوره مراجعه کنید تا فایل های دوره را در قسمت پایین
+                    صفحه بیابید...
+                  </p>
+                  <p>
+                    <span>13:48</span>
+                    <span>1401/08/01</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="notification">
+                <div class="notification__icon-container notification--info">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="notification__icon">
+                    <path
+                      fill-rule="evenodd"
+                      d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="notification__info-container">
+                  <h4>اعلان خبری برای کاربران</h4>
+                  <p>
+                    برای دیدن قسمت های دوره باید به صفحه مربوط به دوره مراجعه کنید تا فایل های دوره را در قسمت پایین
+                    صفحه بیابید...
+                  </p>
+                  <p>
+                    <span>13:48</span>
+                    <span>1401/08/01</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="notification">
+                <div class="notification__icon-container notification--warning">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="notification__icon">
+                    <path
+                      fill-rule="evenodd"
+                      d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="notification__info-container">
+                  <h4>اعلان هشدار برای کاربران !</h4>
+                  <p>
+                    برای دیدن قسمت های دوره باید به صفحه مربوط به دوره مراجعه کنید تا فایل های دوره را در قسمت پایین
+                    صفحه بیابید...
+                  </p>
+                  <p>
+                    <span>13:48</span>
+                    <span>1401/08/01</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--  ------------------ صفحه تنظیمات -------------------   -->
+      <div id="pageSettings">
+        <div class="page-container">
+          <h3 class="page-mini-title">تنظیمات حساب کاربری</h3>
+          <p class="page-mini-subtitle mb-8">بعد از ویرایش اطلاعات حساب کاربری دکمه ثبت اطلاعات کاربری را فشار دهید.</p>
+          <form autocomplete="off" class="edit-profile__form" action="#" method="POST">
+            <label class="edit-profile__img">
+              <img src="images/profile-image.jpg" alt="profile-image" />
+              <input name="profilePicture" type="file" />
+              <span>ویرایش عکس</span>
+              <button type="button" class="edit-profile__pencil">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                </svg>
+              </button>
+            </label>
+            <div class="edit-profile__double-input">
+              <div class="edit-profile__input">
+                <label for="firstname">نام</label>
+                <input placeholder="نام" id="firstname" name="firstname" type="text" />
+              </div>
+              <div class="edit-profile__input">
+                <label for="lastname">نام خانوادگی</label>
+                <input placeholder="نام خانوادگی" id="lastname" name="firstname" type="text" />
+              </div>
+            </div>
+            <div class="edit-profile__input">
+              <label for="phoneNumber"></label>
+              <input placeholder="شماره تماس" type="text" id="phoneNumber" name="phoneNumber" />
+            </div>
+            <div class="edit-profile__input">
+              <label for="email"></label>
+              <input placeholder="ایمیل" type="text" id="email" name="email" />
+            </div>
+            <div class="edit-profile__double-input">
+              <div class="edit-profile__input">
+                <label for="yearOfBirth">سال تاریخ تولد</label>
+                <input placeholder="سال تاریخ تولد" id="yearOfBirth" name="yearOfBirth" type="number" />
+              </div>
+              <div class="edit-profile__input">
+                <label for="cityAndOstan">استان و شهر محل سکونت</label>
+                <input placeholder="استان و شهر محل سکونت" id="cityAndOstan" name="cityAndOstan" type="text" />
+              </div>
+            </div>
+            <div class="edit-profile__switch-container">
+              <label class="edit-profile__switch">
+                <input type="checkbox" name="messages" />
+                <span></span>
+              </label>
+              <span>ارسال پیام</span>
+            </div>
+            <button class="edit-profile__submit" type="submit">ثبت</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
